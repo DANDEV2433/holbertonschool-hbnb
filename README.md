@@ -127,3 +127,5 @@ Ce modèle de données définit une application permettant aux utilisateurs de g
 
 En structurant ainsi les classes et leurs relations, le système assure une bonne organisation des données et une évolutivité permettant d’ajouter de nouvelles fonctionnalités facilement.
 
+##
+https://www.mermaidchart.com/app/projects/57ae3d0d-9fa9-4c14-9ae7-1db4fe821235/diagrams/4e6116b1-9e24-471a-b547-32f64f8bfca6/version/v0.1/edit

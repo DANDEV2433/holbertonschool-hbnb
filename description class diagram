@@ -127,3 +127,6 @@ Ce modèle de données définit une application permettant aux utilisateurs de g
 
 En structurant ainsi les classes et leurs relations, le système assure une bonne organisation des données et une évolutivité permettant d’ajouter de nouvelles fonctionnalités facilement.
 
+---
+
+## Class Diagram

@@ -127,5 +127,84 @@ Ce modèle de données définit une application permettant aux utilisateurs de g
 
 En structurant ainsi les classes et leurs relations, le système assure une bonne organisation des données et une évolutivité permettant d’ajouter de nouvelles fonctionnalités facilement.
 
-##
+## Diagramme des classes
+![Screenshot 2025-02-15 170706](https://github.com/user-attachments/assets/6e1e011c-babb-4b01-81b6-04e8027d93b6)
+```
+classDiagram
+direction TB
+    class User {
+	    -uuid : str
+	    +firstname : str
+	    +lastname : str
+	    +email : str
+	    -admin : bool
+	    -password : str
+	    +date_of_creation : int
+	    +date_of_update : int
+	    register()
+	    login()
+	    logout()
+	    delete()
+	    get_date_of_creation()
+	    get_date_of_update()
+    }
+    class Review {
+	    -uuid : str
+	    +user : str
+	    +place : str
+	    +rating : int
+	    +comment : str
+	    +date_of_review : int
+	    +date_of_update : int
+	    write_review()
+	    delete()
+	    edit()
+	    get_reviews_by_place()
+	    get_reviews_by_user()
+	    get_date_of_review()
+	    get_date_of_creation()
+    }
+    class Place {
+	    - uuid : str
+	    +title : str
+	    +latitude : str
+	    +longitude : str
+	    +price : int
+	    +owner : str
+	    +description : str
+	    +average_rating : int
+	    +aminities : str
+	    +date_of_creation : int
+	    +date_of_update : int
+	    create_place()
+	    update_place()
+	    delete_place()
+	    get_available_dates()
+	    calculate_price()
+	    claculate_average_rating()
+	    get_amenities()
+	    add_amenity()
+	    remove_amenity()
+	    get_date_of_creation()
+	    get_date_of_update()
+    }
+    class Amenity {
+	    -uuid : str
+	    +name : str
+	    +description : str
+	    +date_of_creation : int
+	    +date_of_update : int
+	    create_amenity()
+	    update_amenity()
+	    delete_amenity()
+	    get_all_amenity()
+	    get_date_of_creation()
+	    get_date_of_update()
+    }
+    User --> Review
+    Review --|> Place
+    Review --|> User
+    User --> Place
+    Amenity *-- Place
+```
 https://www.mermaidchart.com/app/projects/57ae3d0d-9fa9-4c14-9ae7-1db4fe821235/diagrams/4e6116b1-9e24-471a-b547-32f64f8bfca6/version/v0.1/edit

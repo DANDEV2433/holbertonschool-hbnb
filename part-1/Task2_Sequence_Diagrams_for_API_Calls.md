@@ -82,3 +82,22 @@ sequenceDiagram
     Frontend-->>User: Review Submitted Successfully
 ```
 ### 4.Fetching a List of Places
+![Screenshot Fetching a List of Places](https://i.postimg.cc/Y93pX9PJ/Capture-d-cran-2025-02-16-205700.png)
+```
+sequenceDiagram
+    participant Utilisateur
+    participant API
+    participant LogiqueMétier
+    participant BaseDeDonnées
+    Utilisateur->>API: GET /places?ville=Bordeaux&prix_max=100
+    API->>LogiqueMétier: Appliquer les filtres et valider la requête
+    LogiqueMétier->>BaseDeDonnées: Rechercher les lieux correspondants
+    BaseDeDonnées-->>LogiqueMétier: Retourner la liste des lieux
+    alt Aucun lieu trouvé
+        LogiqueMétier-->>API: Retourner liste vide
+        API-->>Utilisateur: 200 OK ([])
+    else
+        LogiqueMétier-->>API: Formatter les résultats
+        API-->>Utilisateur: 200 OK (Liste des lieux)
+    end
+```

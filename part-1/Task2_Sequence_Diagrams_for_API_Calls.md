@@ -1,7 +1,30 @@
 ## Sequence diagram for API calls
 
 ### 1.User Registration Diagram
+![Capture d'écran diagram task 1User Registration Diagram](https://s10.aconvert.com/convert/p3r68-cdx67/a1wz1-22g5i.png)
+```
+sequenceDiagram
+    participant Utilisateur
+    participant API
+    participant ServiceUtilisateur
+    participant BaseDeDonnées
 
+    Utilisateur->>API: Demande d'enregistrement (nom, email, mdp)
+    API->>ServiceUtilisateur: Vérifier et créer l'utilisateur
+    ServiceUtilisateur->>BaseDeDonnées: Vérifier si l'email existe
+    BaseDeDonnées-->>ServiceUtilisateur: Email disponible
+    ServiceUtilisateur->>BaseDeDonnées: Enregistrer l'utilisateur
+    BaseDeDonnées-->>ServiceUtilisateur: Confirmation d'enregistrement
+    ServiceUtilisateur-->>API: Succès (ID utilisateur)
+    API-->>Utilisateur: Confirmation d'inscription
+```
+
+```
+Description Détailée du Diagramme
+Le processus d’enregistrement d’un utilisateur suit une séquence bien définie pour assurer la validation et la création sécurisée d’un compte. Tout commence lorsque l’utilisateur envoie une requête d’inscription à l’API, en fournissant ses informations personnelles telles que son nom, son adresse email et son mot de passe. L’API transmet ensuite cette requête au service de gestion des utilisateurs, qui est chargé d’effectuer les vérifications nécessaires avant de procéder à la création du compte.
+
+Tout d’abord, le service utilisateur interroge la base de données afin de vérifier si l’adresse email fournie existe déjà. Si l’email est déjà utilisé, une réponse d’erreur est renvoyée à l’API, qui informe l’utilisateur que l’inscription ne peut pas aboutir. En revanche, si l’email est disponible, le service utilisateur procède à l’enregistrement du nouvel utilisateur en cryptant son mot de passe pour des raisons de sécurité, puis en sauvegardant les informations dans la base de données. Une fois l’inscription réussie, la base de données envoie une confirmation au service utilisateur, qui retourne à son tour une réponse contenant l’identifiant unique du nouvel utilisateur. L’API envoie alors un message de confirmation à l’utilisateur pour lui indiquer que son compte a bien été créé.
+```
 
 ### 2.Place Creation Diagram
 ![Capture d'écran 2025-02-16 181134](https://github.com/user-attachments/assets/452854b6-19e5-4f52-b42a-248e5730df2c)
@@ -82,7 +105,7 @@ sequenceDiagram
     Frontend-->>User: Review Submitted Successfully
 ```
 ### 4.Fetching a List of Places
-![Screenshot Fetching a List of Places](https://i.postimg.cc/Y93pX9PJ/Capture-d-cran-2025-02-16-205700.png)
+![Screenshot Fetching a List of Places](https://s10.aconvert.com/convert/p3r68-cdx67/axot0-c9d4s.png)
 ```
 sequenceDiagram
     participant Utilisateur
@@ -100,4 +123,10 @@ sequenceDiagram
         LogiqueMétier-->>API: Formatter les résultats
         API-->>Utilisateur: 200 OK (Liste des lieux)
     end
+```
+```
+Description Détailée du Diagramme
+Fetching a List of Places
+
+Le diagramme de séquence Fetching a List of Places décrit le processus par lequel un utilisateur envoie une requête pour obtenir une liste de lieux selon certains critères par exemple la ville le prix... L’API reçoit la requête et la transmet à la couche de logique métier, qui applique les filtres et interroge la base de données. Si des lieux correspondent, ils sont retournés à l’utilisateur sous forme de liste. Sinon, une réponse vide est envoyée.
 ```

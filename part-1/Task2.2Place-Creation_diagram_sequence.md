@@ -4,27 +4,11 @@
 
 
 ### 2.Place Creation Diagram
-![Capture d'écran 2025-02-16 101206](https://github.com/user-attachments/assets/4df1625b-6925-4125-85f3-a984649a286f)
-![Capture d'écran 2025-02-16 101133](https://github.com/user-attachments/assets/a8790df8-af64-466c-a20b-78ef0acec736)
+![Capture d'écran 2025-02-16 181134](https://github.com/user-attachments/assets/452854b6-19e5-4f52-b42a-248e5730df2c)
+![Capture d'écran 2025-02-16 181207](https://github.com/user-attachments/assets/c9fc5dcb-0857-4fb9-a585-a03720b6c1c3)
 ```
-sequenceDiagram
-    participant User
-    participant API
-    participant PlaceService
-    participant Database
+![Capture d'écran 2025-02-16 182806](https://github.com/user-attachments/assets/5cd03109-048f-4b99-82ec-9ef754ee6ed8)
 
-    User->>API: createPlace(title, latitude, longitude, price, owner, description, amenities)
-    API->>PlaceService: validatePlaceData(title, latitude, longitude, price, owner, description, amenities)
-    PlaceService-->>API: ValidateResult(succes/failure)
-    alt Validation succes
-        API->>PlaceService: createPlace(title, latitude, longitude, price, owner, description, amenities)
-        PlaceService->>Datebase: InsertPlaceData(title, latitude, longitude, price, owner, description, amenities)
-        Database-->>PlaceService: ConfirmPlaceCreated(uuid)
-        PlaceService-->>API: PlaceCreationResponse(succes, uuid)
-        API-->>User: Response (succes, uuid)
-    else Validation failure
-        API-->>User: (failure, validation_errors)
-    end
 ```
 ### 3.Review Submission Diagram
 ![Screenshot 2025-02-16 110756](https://github.com/user-attachments/assets/18856d1d-f3c0-46b8-aa3d-e4298930ff5c)

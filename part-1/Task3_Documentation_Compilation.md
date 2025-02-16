@@ -1,32 +1,18 @@
-# **HBnB Technical Documentation**
+# Documentation Technique du Projet HBnB
 
-## **1. Introduction**
+## Introduction
 
-### **Purpose of the Document**
+Ce document technique décrit l'architecture et le fonctionnement du projet HBnB. Il inclut une vue d'ensemble de l'architecture du projet, une explication détaillée de la couche logique métier et les interactions entre les composants via des diagrammes de séquence des appels API. L'objectif est de fournir une référence claire et structurée pour le développement et la mise en œuvre du projet.
 
-This document provides a comprehensive technical overview of the HBnB project, detailing its architecture, business logic, and API interactions. It serves as a reference for developers and stakeholders to understand the system design and facilitate its implementation.
+## Architecture de Haut Niveau
 
-### **Scope**
+Le projet HBnB est organisé en trois couches principales :
 
-The HBnB project is a platform where users can register, log in, create places, write reviews, and search for accommodations based on filters. This document covers:
+- **Presentation Layer (Couche de Présentation)** : Elle fournit les interfaces utilisateur et expose les API.
+- **Business Logic Layer (Couche Logique Métier)** : Elle contient les entités principales et la logique métier associée.
+- **Persistence Layer (Couche de Persistance)** : Elle gère l'accès et la manipulation des données dans la base de données.
 
-- The **high-level architecture** of the application.
-- The **detailed class diagram** for the Business Logic Layer.
-- The **sequence diagrams** illustrating key API interactions.
-
----
-
-## **2. High-Level Architecture**
-
-### **Layered Architecture Overview**
-
-The system follows a three-layer architecture:
-
-1. **Presentation Layer** (Frontend): Handles user interactions and API requests.
-2. **Business Logic Layer** (Backend Services): Processes data and enforces business rules.
-3. **Persistence Layer** (Database): Stores and retrieves application data.
-
-### **High-Level Package Diagram**
+### Diagramme de l'Architecture de Haut Niveau
 
 ```mermaid
 classDiagram
@@ -56,89 +42,83 @@ PresentationLayer --> BusinessLogicLayer : FacadeInterface
 BusinessLogicLayer --> PersistenceLayer : Database Operations
 ```
 
-**Explanation:**
+## Couche Logique Métier
 
-- The **Presentation Layer** interacts with users through APIs.
-- The **Business Logic Layer** processes and validates data before interacting with the database.
-- The **Persistence Layer** manages data storage and retrieval operations.
+La couche logique métier contient les principales entités utilisées dans le projet HBnB : `User`, `Place`, `Review`, et `Amenity`. Chaque entité a des attributs et méthodes spécifiques qui assurent la gestion des opérations métier.
 
----
-
-## **3. Business Logic Layer**
-
-### **Class Diagram for Core Entities**
+### Diagramme de Classes de la Couche Logique Métier
 
 ```mermaid
 classDiagram
 direction TB
     class User {
-	    -uuid : str
-	    +firstname : str
-	    +lastname : str
-	    +email : str
-	    -admin : bool
-	    -password : str
-	    +date_of_creation : int
-	    +date_of_update : int
-	    register()
-	    login()
-	    logout()
-	    delete()
-	    get_date_of_creation()
-	    get_date_of_update()
+        -uuid : str
+        +firstname : str
+        +lastname : str
+        +email : str
+        -admin : bool
+        -password : str
+        +date_of_creation : int
+        +date_of_update : int
+        register()
+        login()
+        logout()
+        delete()
+        get_date_of_creation()
+        get_date_of_update()
     }
     class Review {
-	    -uuid : str
-	    +user : str
-	    +place : str
-	    +rating : int
-	    +comment : str
-	    +date_of_review : int
-	    +date_of_update : int
-	    write_review()
-	    delete()
-	    edit()
-	    get_reviews_by_place()
-	    get_reviews_by_user()
-	    get_date_of_review()
-	    get_date_of_creation()
+        -uuid : str
+        +user : str
+        +place : str
+        +rating : int
+        +comment : str
+        +date_of_review : int
+        +date_of_update : int
+        write_review()
+        delete()
+        edit()
+        get_reviews_by_place()
+        get_reviews_by_user()
+        get_date_of_review()
+        get_date_of_creation()
     }
     class Place {
-	    - uuid : str
-	    +title : str
-	    +latitude : str
-	    +longitude : str
-	    +price : int
-	    +owner : str
-	    +description : str
-	    +average_rating : int
-	    +aminities : str
-	    +date_of_creation : int
-	    +date_of_update : int
-	    create_place()
-	    update_place()
-	    delete_place()
-	    get_available_dates()
-	    calculate_price()
-	    claculate_average_rating()
-	    get_amenities()
-	    add_amenity()
-	    remove_amenity()
-	    get_date_of_creation()
-	    get_date_of_update()
+        - uuid : str
+        +title : str
+        +latitude : str
+        +longitude : str
+        +price : int
+        +owner : str
+        +description : str
+        +average_rating : int
+        +aminities : str
+        +date_of_creation : int
+        +date_of_update : int
+        create_place()
+        update_place()
+        delete_place()
+        get_available_dates()
+        calculate_price()
+        claculate_average_rating()
+        get_amenities()
+        add_amenity()
+        remove_amenity()
+        get_date_of_creation()
+        get_date_of_update()
     }
     class Amenity {
-	    -uuid : str
-	    +name : str
-	    +description : str
-	    +date_of_creation : int
-	    +date_of_update : int
-	    create_amenity()
-	    update_amenity()
-	    delete_amenity()
-	    get_all_amenity()
-	    get_date_of_creation()
-	    get_date_of_update()
+        -uuid : str
+        +name : str
+        +description : str
+        +date_of_creation : int
+        +date_of_update : int
+        create_amenity()
+        update_amenity()
+        delete_amenity()
+        get_all_amenity()
+        get_date_of_creation()
+        get_date_of_update()
     }
     User --> Review
     Review --|> Place
@@ -147,18 +127,9 @@ direction TB
     Amenity *-- Place
 ```
 
-**Explanation:**
+## Flux d'Interaction des API
 
-- **User** class manages authentication and profile details.
-- **Review** class links a user to a place with ratings and comments.
-- **Place** represents an accommodation, containing details and amenities.
-- **Amenity** defines additional features available at a place.
-
----
-
-## **4. API Interaction Flow**
-
-### **User Registration Sequence**
+### Enregistrement d'un Utilisateur
 
 ```mermaid
 sequenceDiagram
@@ -177,7 +148,7 @@ sequenceDiagram
     API-->>Utilisateur: Confirmation d'inscription
 ```
 
-### **User Login and Place Creation**
+### Création d'un Lieu
 
 ```mermaid
 sequenceDiagram
@@ -212,7 +183,7 @@ sequenceDiagram
     end
 ```
 
-### **Review Submission**
+### Soumission d'un Avis
 
 ```mermaid
 sequenceDiagram
@@ -231,9 +202,7 @@ sequenceDiagram
     Frontend-->>User: Review Submitted Successfully
 ```
 
----
+## Conclusion
 
-## **5. Conclusion**
-
-This document outlines the key architectural components, business logic, and API workflows of the HBnB platform. It serves as a foundational reference for the development team to ensure a well-structured and efficient implementation.
+Ce document présente une vue complète de l'architecture du projet HBnB, détaillant la structure en couches, la logique métier et les interactions API essentielles. Il servira de guide de référence pour les développeurs travaillant sur l'implémentation du projet.
 

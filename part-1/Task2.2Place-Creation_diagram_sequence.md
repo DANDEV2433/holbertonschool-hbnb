@@ -1,4 +1,4 @@
-## Seqquence diagram for API calls
+## Sequence diagram for API calls
 
 ### User Registration Diagram
 

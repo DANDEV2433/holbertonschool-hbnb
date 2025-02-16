@@ -1,9 +1,9 @@
 ## Sequence diagram for API calls
 
-### User Registration Diagram
+### 1.User Registration Diagram
 
 
-### Place Creation Diagram
+### 2.Place Creation Diagram
 ![Capture d'écran 2025-02-16 101206](https://github.com/user-attachments/assets/4df1625b-6925-4125-85f3-a984649a286f)
 ![Capture d'écran 2025-02-16 101133](https://github.com/user-attachments/assets/a8790df8-af64-466c-a20b-78ef0acec736)
 ```
@@ -26,7 +26,7 @@ sequenceDiagram
         API-->>User: (failure, validation_errors)
     end
 ```
-### Review Submission Diagram
+### 3.Review Submission Diagram
 ![Screenshot 2025-02-16 110756](https://github.com/user-attachments/assets/18856d1d-f3c0-46b8-aa3d-e4298930ff5c)
 ```
 sequenceDiagram
@@ -44,4 +44,4 @@ sequenceDiagram
     ReviewService->>Frontend: Response (201 Created, Review ID)
     Frontend-->>User: Review Submitted Successfully
 ```
-### Fetching a List of Places
+### 4.Fetching a List of Places

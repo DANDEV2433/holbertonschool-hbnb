@@ -44,3 +44,4 @@ sequenceDiagram
     ReviewService->>Frontend: Response (201 Created, Review ID)
     Frontend-->>User: Review Submitted Successfully
 ```
+### Fetching a List of Places

@@ -21,13 +21,20 @@ sequenceDiagram
 
 ### Description Détailée du Diagramme
 Le processus d’enregistrement d’un utilisateur suit une séquence bien définie pour assurer la validation et la création sécurisée d’un compte. 
+
 Tout commence lorsque l’utilisateur envoie une requête d’inscription à l’API, en fournissant ses informations personnelles telles que son nom, son adresse email et son mot de passe. 
+
 L’API transmet ensuite cette requête au service de gestion des utilisateurs, qui est chargé d’effectuer les vérifications nécessaires avant de procéder à la création du compte.
 
+
 Tout d’abord, le service utilisateur interroge la base de données afin de vérifier si l’adresse email fournie existe déjà. 
+
 Si l’email est déjà utilisé, une réponse d’erreur est renvoyée à l’API, qui informe l’utilisateur que l’inscription ne peut pas aboutir. 
+
 En revanche, si l’email est disponible, le service utilisateur procède à l’enregistrement du nouvel utilisateur en cryptant son mot de passe pour des raisons de sécurité, puis en sauvegardant les informations dans la base de données.
+
 Une fois l’inscription réussie, la base de données envoie une confirmation au service utilisateur, qui retourne à son tour une réponse contenant l’identifiant unique du nouvel utilisateur.
+
 L’API envoie alors un message de confirmation à l’utilisateur pour lui indiquer que son compte a bien été créé.
 
 
@@ -110,15 +117,25 @@ sequenceDiagram
 ```
 ### Description Détailée du Diagramme
 L'utilisateur saisit un avis sur un lieu via l’interface utilisateur.
+
 L’application (Frontend) reçoit la demande et la prépare pour l’envoi au serveur via l’API.
+
 Le frontend envoie une requête HTTP POST à l’API du ReviewService avec les données de l’avis.
+
 Le Frontend agit comme un intermédiaire entre l’utilisateur et le backend.
+
 Il envoie une requête au ReviewService pour traiter la soumission de l’avis.
+
 Avant d'insérer l'avis, le ReviewService doit vérifier que l'ID du lieu (place_id) existe bien dans la base, et que l'ID de l’utilisateur (user_id) est valide.
+
 Ensuite, la base de données confirme au ReviewService que le lieu existe (place_id valide), et que l'utilisateur existe (user_id valide).
+
 Après validation, le ReviewService insère l'avis avec la note (rating), le commentaire (comment), l'ID du lieu (place_id) et l'ID de l'utilisateur (user_id).
+
 La base de données confirme au ReviewService que l’avis a bien été enregistré.
+
 Le ReviewService envoie une réponse HTTP 201 Created au Frontend.
+
 Le Frontend informe l’utilisateur que l’avis a bien été soumis.
 
 
@@ -146,7 +163,10 @@ sequenceDiagram
 Fetching a List of Places
 
 Le diagramme de séquence Fetching a List of Places décrit le processus par lequel un utilisateur envoie une requête pour obtenir une liste de lieux selon certains critères par exemple la ville le prix... 
+
 L’API reçoit la requête et la transmet à la couche de logique métier, qui applique les filtres et interroge la base de données.
+
 Si des lieux correspondent, ils sont retournés à l’utilisateur sous forme de liste.
+
 Sinon, une réponse vide est envoyée.
 

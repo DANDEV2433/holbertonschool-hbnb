@@ -94,5 +94,5 @@ pip install -r requirements.txt
 # Exécution de l'Application
 Pour exécuter l'application Flask, utilisez la commande suivante :
 ```
-python run.py
+python3 run.py
 ```

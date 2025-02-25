@@ -137,7 +137,7 @@ direction TB
 	    +firstname : str
 	    +lastname : str
 	    +email : str
-	    -admin : bool
+	    +admin : bool
 	    -password : str
 	    +date_of_creation : int
 	    +date_of_update : int
@@ -167,13 +167,13 @@ direction TB
     class Place {
 	    - uuid : str
 	    +title : str
-	    +latitude : str
-	    +longitude : str
+	    +latitude : float
+	    +longitude : float
 	    +price : int
 	    +owner : str
 	    +description : str
 	    +average_rating : int
-	    +aminities : str
+	    +amenities : List[Amenity]
 	    +date_of_creation : int
 	    +date_of_update : int
 	    create_place()
@@ -181,7 +181,7 @@ direction TB
 	    delete_place()
 	    get_available_dates()
 	    calculate_price()
-	    claculate_average_rating()
+	    calculate_average_rating()
 	    get_amenities()
 	    add_amenity()
 	    remove_amenity()
@@ -201,10 +201,11 @@ direction TB
 	    get_date_of_creation()
 	    get_date_of_update()
     }
-    User --> Review
-    Review --|> Place
-    Review --|> User
-    User --> Place
-    Amenity *-- Place
+    User "1" --> "N" Review (un utilisateur → plusieurs avis)
+    Review "N" --> "1" Place (plusieurs avis → un lieu)
+    User "1" --> "N" Place (un utilisateur → plusieurs lieux)
+    Amenity "*--*" Place (plusieurs commodités peuvent être associées à plusieurs lieux)
+
 ```
+
 https://www.mermaidchart.com/app/projects/57ae3d0d-9fa9-4c14-9ae7-1db4fe821235/diagrams/4e6116b1-9e24-471a-b547-32f64f8bfca6/version/v0.1/edit

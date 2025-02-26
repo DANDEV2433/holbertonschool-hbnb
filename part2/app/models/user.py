@@ -14,7 +14,7 @@ class User(BaseModel):
         self.is_admin = is_admin
         self.password = password
         self.reviews = []
-        self.places = [] # Liste des lieux possédés par l'utilisateur
+        self.places = []  # Liste des lieux possédés par l'utilisateur
 
     def add_place(self, place):
         # Ajoute un lieu à l'utilisateur.

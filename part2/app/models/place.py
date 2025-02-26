@@ -2,12 +2,12 @@
 from .base_model import BaseModel
 from uuid import uuid4
 from datetime import datetime
-from user import user
+from user import User
+
 
 class Place(BaseModel):
     def __init__(self, title, description, price, latitude, longitude, owner):
         super().__init__()
-        self.id = str(uuid4())
         self.title = self.validate_title(title)
         self.description = self.validate_description(description)
         self.price = self.validate_price(price)
@@ -21,7 +21,9 @@ class Place(BaseModel):
         """ajoute un avis au lieu"""
         if review not in self.reviews:
             self.reviews.append(review)
-            print(f"Avis ajoute par {review.user.first_name}{review.user.last_name}")
+            print(
+                f"ajoute par {review.user.first_name}{review.user.last_name}"
+                )
         else:
             print("Cet avis a deja ete ajoute")
 
@@ -46,7 +48,9 @@ class Place(BaseModel):
     @staticmethod
     def validate_title(title):
         if not title or len(title) > 100:
-            raise ValueError("Un titre est requis et ne doit pas depasser 100 caracteres.")
+            raise
+        ValueError
+        ("Un titre est requis et ne doit pas depasser 100 caracteres.")
         return title
 
     @staticmethod
@@ -75,18 +79,19 @@ class Place(BaseModel):
 
     @staticmethod
     def validate_owner(owner):
-        if not isinstance(owner, user):
-            raise ValueError("Le proprietaire doit etre une instance valide de User.")
+        if not isinstance(owner, User):
+            raise
+        ValueError("Le proprietaire doit etre une instance valide de User.")
         return owner
 
     def update(self, **kwargs):
-        """met a jour les attributs et modifie la date de mise a jour (updated_at)"""
+        # maj les attributs et modifie la date de mise a jour (updated_at)
         for key, value in kwargs.items():
             if hasattr(self, key) and key != "id":
                 setattr(self, key, value)
         self.updated_at = datetime()
 
     def __repr__(self):
-        return f"Place(id={self.id}, title={self.title}, price={self.price},
-        latitude={self.latitude}, longitude={self.longitude},
-        owner={self.owner.first_name} {self.owner.last_name})"
+        return (f"Place(id={self.id}, title={self.title}, price={self.price},"
+                f"latitude={self.latitude}, longitude={self.longitude},"
+                f"owner={self.owner.first_name} {self.owner.last_name})")

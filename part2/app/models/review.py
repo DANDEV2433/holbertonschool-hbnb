@@ -9,7 +9,6 @@ class Review(BaseModel):
         self.place = place  # Référence au lieu associé à la revue
         self.user = user  # Référence à l'utilisateur ayant rédigé la revue
 
-
     def write_review(self):
         # Validation du texte de la revue
         if not self.text:

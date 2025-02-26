@@ -2,7 +2,7 @@
 from .base_model import BaseModel
 from uuid import uuid4
 from datetime import datetime
-from user import User
+from app.models.user import User
 
 
 class Place(BaseModel):

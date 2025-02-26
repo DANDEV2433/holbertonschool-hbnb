@@ -6,10 +6,9 @@ class Review(BaseModel):
         super().__init__()
         self.text = text
         self.rating = rating
-        self.place = place
-        self.user = user
-        self.created_at = self.created_at
-        self.updated_at = self.updated_at
+        self.place = place  # Référence au lieu associé à la revue
+        self.user = user  # Référence à l'utilisateur ayant rédigé la revue
+
 
     def write_review(self):
         # Validation du texte de la revue

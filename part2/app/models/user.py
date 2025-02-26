@@ -13,16 +13,37 @@ class User(BaseModel):
         self.email = email
         self.is_admin = is_admin
         self.password = password
+        self.reviews = []
+        self.places = [] # Liste des lieux possédés par l'utilisateur
+
+    def add_place(self, place):
+        # Ajoute un lieu à l'utilisateur.
+        if place not in self.places:
+            self.places.append(place)
+            print(f"Lieu ajouté à {self.first_name} {self.last_name}")
+        else:
+            print("Ce lieu a déjà été ajouté.")
+
+    def add_review(self, review):
+        # Ajoute une revue à la liste des revues de l'utilisateur
+        if review not in self.reviews:
+            self.reviews.append(review)
+            print(f"Revue ajoutée par {self.first_name} {self.last_name}")
+        else:
+            print("Cette revue a déjà été ajoutée.")
+
+    def get_reviews(self):
+        # Retourne toutes les revues écrites par cet utilisateur
+        return self.reviews
 
     def register(self):
         # enregistrement de l'utilisateur
         # Validation pour le prénom
         if len(self.first_name) > 50:
-            raise ValueError("Le prénom ne peut pas dépasser 50 caractères.")
+            raise ValueError("Le prénom dépasse 50 caractères.")
     # Validation pour le nom de famille
         if len(self.last_name) > 50:
-            raise ValueError
-        ("Le nom de famille ne peut pas dépasser 50 caractères.")
+            raise ValueError("Le nom de famille dépasse 50 caractères.")
 
     # Validation pour l'email
         if not self.is_valid_email(self.email):

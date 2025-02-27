@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # classe utilisée pour créer une instance de l'application Flask.
 from flask import Flask
 # classe utilisée pour créer une instance de l'API RESTful.

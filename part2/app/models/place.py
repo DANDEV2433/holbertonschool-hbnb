@@ -28,7 +28,7 @@ class Place(BaseModel):
             print("Cet avis a deja ete ajoute")
 
     def get_reviews(self):
-        """retourn tout les avis associes au lieu"""
+        """retourne tout les avis associes au lieu"""
         return self.reviews
 
     def add_amenity(self, amenity):
@@ -42,7 +42,7 @@ class Place(BaseModel):
             self.amenities.remove(amenity)
 
     def get_amenities(self):
-        """retourn la liste de commodites du lieu"""
+        """retourne la liste de commodites du lieu"""
         return self.amenities
 
     @staticmethod

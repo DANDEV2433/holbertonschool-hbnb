@@ -6,13 +6,13 @@ class Review(BaseModel):
         super().__init__()
         self.text = text
         self.rating = rating
-        self.place = place  # Référence au lieu associé à la revue
-        self.user = user  # Référence à l'utilisateur ayant rédigé la revue
+        self.place = place  # Référence au lieu associé à l'avis
+        self.user = user  # Référence à l'utilisateur ayant rédigé l'avis
 
     def write_review(self):
-        # Validation du texte de la revue
+        # Validation du texte de l'avis
         if not self.text:
-            raise ValueError("Le texte de la revue est obligatoire.")
+            raise ValueError("Le texte de l'avis est obligatoire.")
 
         # Validation de la note
         if not (1 <= self.rating <= 5):
@@ -20,12 +20,12 @@ class Review(BaseModel):
 
         # Validation de l'existence du lieu et de l'utilisateur
         if not self.place:
-            raise ValueError("Le lieu de la revue est invalide.")
+            raise ValueError("Le lieu de l'avis est invalide.")
 
         if not self.user:
-            raise ValueError("L'utilisateur de la revue est invalide.")
+            raise ValueError("L'utilisateur de l'avis est invalide.")
 
-        # Ajouter la revue au lieu
+        # Ajouter l'avis au lieu
         self.place.add_review(self)
 
         print(
@@ -34,20 +34,20 @@ class Review(BaseModel):
         )
 
     def delete(self):
-        # Supprimer la revue
+        # Supprimer l'avis
         if self.place:
             self.place.remove_review(self)
 
-        # Effacer les informations de la revue
+        # Effacer les informations de l'avis
         self.text = None
         self.rating = None
         self.place = None
         self.user = None
 
-        print(f"Revue supprimée.")
+        print(f"Avis supprimé.")
 
     def edit(self, new_text, new_rating):
-        # modifier une revue existante
+        # modifier un avis existant
         if new_rating < 1 or new_rating > 5:
             raise ValueError("La note doit être entre 1 et 5.")
 
@@ -56,28 +56,28 @@ class Review(BaseModel):
         self.save()  # Mise à jour de la date de mise à jour
 
         print(
-            f"Revue éditée par {self.user.first_name} "
+            f"Avis édité par {self.user.first_name} "
             f"{self.user.last_name}."
         )
 
     def get_reviews_by_place(self):
-        # Retourner toutes les revues pour un lieu donné
+        # Retourner tout les avis pour un lieu donné
         return [
             review for review in self.place.reviews
             if review.place == self.place
         ]
 
     def get_reviews_by_user(self):
-        # Retourner toutes les revues écrites par un utilisateur donné
+        # Retourner tout les avis écrits par un utilisateur donné
         return [
             review for review in self.place.reviews
             if review.user == self.user
         ]
 
     def get_date_of_review(self):
-        # Retourner la date de création de la revue
+        # Retourner la date de création de l'avis
         return self.created_at
 
     def get_date_of_creation(self):
-        # Retourner la date de création de la revue
+        # Retourner la date de création de l'avise
         return self.created_at

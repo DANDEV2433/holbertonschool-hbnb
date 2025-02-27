@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from app.persistence.repository import InMemoryRepository
+from app.models import user, place, amenity, review
 
 class HBnBFacade:
     def __init__(self):
@@ -10,7 +11,7 @@ class HBnBFacade:
 
     # Placeholder method for creating a user
     def create_user(self, user_data):
-        user = User(**user_data)
+        user = user(**user_data)
         self.user_repo.add(user)
         return user
 
@@ -21,55 +22,64 @@ class HBnBFacade:
         return self.user_repo.get_by_attribute('email', email)
 
     def create_place(self, place_data):
-        pass
+        place = place(**place_data)
+        self.place_repo.add(place)
+        return place
 
-    # Placeholder method for fetching a place by ID
     def get_place(self, place_id):
-        # Logic will be implemented in later tasks
-        pass
+        return self.place_repo.get(place_id)
 
     def get_all_places(self):
-        pass
+        return self.place_repo.get_all(self)
 
-    def update_palce(self, place_id, place_data):
-        pass
+    def update_place(self, place_id, place_data):
+         # Récupére la place existante
+        place = self.get_place(place_id)
+        place.update(**place_data)  # Maj la place
+        self.place_repo.update(place)  # Sauvegarde
+        return place
     
     def create_amenity(self, amenity_data):
-    # Placeholder for logic to create an amenity
-        pass
+        amenity = amenity(**amenity_data)
+        self.amenity_repo.add(amenity)
+        return amenity
 
     def get_amenity(self, amenity_id):
-    # Placeholder for logic to retrieve an amenity by ID
-        pass
+        return self.amenity_repo.get(amenity_id)
 
     def get_all_amenities(self):
-    # Placeholder for logic to retrieve all amenities
-        pass
-
+        return self.amenity_repo.get_all(self)
+    
     def update_amenity(self, amenity_id, amenity_data):
-    # Placeholder for logic to update an amenity
-        pass
+        # Récupére la commodité existante
+        amenity = self.get_amenity(amenity_id)
+        amenity.update(**amenity_data)  # Maj la commodité
+        self.amenity_repo.update(amenity)  # Sauvegarde
+        return amenity
 
     def create_review(self, review_data):
-    # Placeholder for logic to create a review, including validation for user_id, place_id, and rating
-        pass
+        review = review(**review_data)
+        self.review_repo.add(review)
+        return review
 
     def get_review(self, review_id):
-    # Placeholder for logic to retrieve a review by ID
-        pass
+        return self.review_repo.get(review_id)
 
     def get_all_reviews(self):
-    # Placeholder for logic to retrieve all reviews
-        pass
+        return self.review_repo.get_all(self)
 
     def get_reviews_by_place(self, place_id):
-    # Placeholder for logic to retrieve all reviews for a specific place
-        pass
+        # Récupérer les avis du lieu
+        reviews = self.review_repo.get_reviews_for_place(place_id)
+        return reviews
 
     def update_review(self, review_id, review_data):
-    # Placeholder for logic to update a review
-        pass
+         # Récupére l'avis existant
+        review = self.get_review(review_id)
+        review.update(**review_data)  # Maj l'avis
+        self.review_repo.update(review)  # Sauvegarde
+        return review
 
     def delete_review(self, review_id):
-    # Placeholder for logic to delete a review
-        pass
+        review = self.review_repo.get(review_id)
+        self.review_repo.delete(review)

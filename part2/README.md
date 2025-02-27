@@ -85,6 +85,71 @@ requirements.txt : Liste des packages Python nécessaires au projet.
 
 README.md : Fichier contenant un aperçu du projet, des instructions d'installation et d'exécution.
 
+---
+
+# Business Logic Layer
+La couche de logique métier est implémentée dans app/services/.
+
+Elle définit comment les entités interagissent et applique les règles métier.
+
+### Entités et responsabilités
+| Entité | Description |
+|--------|-------------|
+| `Place` | Représente un lieu. |
+| `Amenity` | Représente une commodité associée à un lieu. |
+| `Review` | Représente un avis laissé par un utilisateur sur un lieu. |
+| `User` | Représente un utilisateur qui peut être propriétaire d'un lieu ou laisser un avis. |
+
+## Exemples d'Utilisation
+
+### Créer un Lieu
+```python
+from app.models.user import User
+from app.models.place import Place
+
+# Création d'un propriétaire
+owner = user(first_name="Alice", last_name="Smith", email="alice.smith@example.com")
+
+# Création d'un lieu
+place = Place(
+    title="Cozy Apartment",
+    description="Un bel endroit pour séjourner",
+    price=100,
+    latitude=37.7749,
+    longitude=-122.4194,
+    owner=owner
+)
+
+print(place)
+```
+
+### Ajouter une Commodité à un Lieu
+```python
+from app.models.amenity import Amenity
+
+# Création d'une commodité
+wifi = Amenity(name="Wi-Fi")
+
+# Ajout de la commodité au lieu
+place.add_amenity(wifi)
+
+print(place.get_amenities())  # Liste des commodités associées
+```
+
+### Ajouter un Avis à un Lieu
+```python
+from app.models.amenity import Amenity
+
+# Création d'une commodité
+wifi = Amenity(name="Wi-Fi")
+
+# Ajout de la commodité au lieu
+place.add_amenity(wifi)
+
+print(place.get_amenities())  # Liste des commodités associées
+```
+
+---
 # Installation des Dépendances
 
 Pour installer les dépendances nécessaires au projet, exécutez la commande suivante :

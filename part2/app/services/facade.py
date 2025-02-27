@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from app.persistence.repository import InMemoryRepository
 from app.models import user, place, amenity, review
+from app.models import user, place, amenity, review
 
 class HBnBFacade:
     def __init__(self):
@@ -81,5 +82,5 @@ class HBnBFacade:
         return review
 
     def delete_review(self, review_id):
-        review = self.review_repo.get(review_id)
-        self.review_repo.delete(review)
+    # Placeholder for logic to delete a review
+        pass

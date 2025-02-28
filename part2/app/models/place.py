@@ -3,6 +3,7 @@ from .base_model import BaseModel
 from datetime import datetime
 from app.models.user import User
 from flask_restx import Api
+from flask import request
 
 api = Api()
 

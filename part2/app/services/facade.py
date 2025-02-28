@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from app.persistence.repository import InMemoryRepository
 from app.models import user, place, amenity, review
-from app.models import user, place, amenity, review
 
 class HBnBFacade:
     def __init__(self):

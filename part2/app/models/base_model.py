@@ -4,7 +4,7 @@ from datetime import datetime
 
 class BaseModel:
     def __init__(self):
-        self.id = str(uuid.uuid4())  # Identifiant unique
+        self.id = str(uuid4())  # Identifiant unique
         self.created_at = datetime.now()  # Horodatage de la création
         self.updated_at = datetime.now()  # Horodatage de la dernière mise à jour
 

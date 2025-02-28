@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from flask import Blueprint
 from flask_restx import Api
-from .amenity import api as amenity_ns
-from .place import api as place_ns
-from .user import api as user_ns
+from app.models.amenity import api as amenity_ns
+from app.models.place import api as place_ns
+from app.models.user import api as user_ns
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 

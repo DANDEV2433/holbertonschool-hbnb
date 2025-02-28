@@ -1,0 +1,28 @@
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+*.pyo
+
+# Environnement virtuel
+venv/
+
+# Fichiers de base de données SQLite
+*.sqlite3
+
+# Dossiers générés par Flask
+instance/
+
+# Fichiers de logs
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.swp
+
+# Fichiers spécifiques aux IDE
+.vscode/
+.idea/
+
+# macOS et Windows
+.DS_Store
+Thumbs.db

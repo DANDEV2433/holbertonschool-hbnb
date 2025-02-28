@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from .base_model import BaseModel
+from flask_restx import Api, namespace
 
+api = Api()
 
 class Review(BaseModel):
     def __init__(self, text, rating, place, user):

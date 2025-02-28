@@ -1,7 +1,8 @@
 from .base_model import BaseModel
-from uuid import uuid4
 from datetime import datetime
+from flask_restx import Api
 
+api = Api()
 
 class Amenity(BaseModel):
     def __init__(self, name):

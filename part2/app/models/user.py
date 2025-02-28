@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 from .base_model import BaseModel
+from flask_restx import Api
 import re
+
+api = Api()
 
 
 class User(BaseModel):

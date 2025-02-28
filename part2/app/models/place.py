@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 from .base_model import BaseModel
-from uuid import uuid4
 from datetime import datetime
 from app.models.user import User
+from flask_restx import Api
 
+api = Api()
 
 class Place(BaseModel):
     def __init__(self, title, description, price, latitude, longitude, owner):

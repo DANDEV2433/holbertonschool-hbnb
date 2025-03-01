@@ -1,4 +1,4 @@
-from app.models.base_model import BaseModel
+from .base_model import BaseModel
 from datetime import datetime
 from flask_restx import Api
 

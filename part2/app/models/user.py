@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from app.models.base_model import BaseModel
+from .base_model import BaseModel
 from flask_restx import Api
 import re
 
@@ -100,5 +100,5 @@ class User(BaseModel):
         return self.created_at
 
     def get_date_of_update(self):
-        """Retourner la date de mise Ã  jour de l'utilisateur."""
+        """Retourner la date de mise Ã jour de l'utilisateur."""
         return self.updated_at

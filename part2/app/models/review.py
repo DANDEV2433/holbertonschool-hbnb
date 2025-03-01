@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from app.models.base_model import BaseModel
+from .base_model import BaseModel
 from flask_restx import Api, namespace
 
 api = Api()

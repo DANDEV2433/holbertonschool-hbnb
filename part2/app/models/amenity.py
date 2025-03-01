@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from .base_model import BaseModel
 from datetime import datetime
 from flask_restx import Api

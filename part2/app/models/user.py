@@ -60,6 +60,8 @@ class User(BaseModel):
     # Ajouter l'email à la liste après la validation
         self.__class__.email_list.append(self.email)
 
+        super().save()
+
         print(f"{self.first_name} {self.last_name} enregistré avec succès.")
 
     def is_valid_email(self, email):

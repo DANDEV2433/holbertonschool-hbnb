@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from app.models.base_model import BaseModel
+from .base_model import BaseModel
 from flask_restx import Api
 import re
 
@@ -20,20 +20,20 @@ class User(BaseModel):
         self.places = []  # Liste des lieux possédés par l'utilisateur
 
     def add_place(self, place):
-        # Ajoute un lieu à l'utilisateur.
+        # Ajoute un lieu à  l'utilisateur.
         if place not in self.places:
             self.places.append(place)
-            print(f"Lieu ajouté à {self.first_name} {self.last_name}")
+            print(f"Lieu ajouté à  {self.first_name} {self.last_name}")
         else:
-            print("Ce lieu a déjà été ajouté.")
+            print("Ce lieu a déjà  été ajouté.")
 
     def add_review(self, review):
-        # Ajoute une revue à la liste des revues de l'utilisateur
+        # Ajoute une revue à  la liste des revues de l'utilisateur
         if review not in self.reviews:
             self.reviews.append(review)
             print(f"Revue ajoutée par {self.first_name} {self.last_name}")
         else:
-            print("Cette revue a déjà été ajoutée.")
+            print("Cette revue a déjà  été ajoutée.")
 
     def get_reviews(self):
         # Retourne toutes les revues écrites par cet utilisateur
@@ -54,20 +54,17 @@ class User(BaseModel):
 
     # Vérifier si l'email est unique
         if not self.is_unique_email(self.email):
-            raise ValueError("L'email est déjà utilisé.")
+            raise ValueError("L'email est déjà  utilisé.")
 
-    # Ajouter l'email à la liste après la validation
+    # Ajouter l'email à  la liste après la validation
         self.__class__.email_list.append(self.email)
-
-        super().save()
 
         print(f"{self.first_name} {self.last_name} enregistré avec succès.")
 
-    @staticmethod
     def is_valid_email(self, email):
         # Valide le format de l'email avec une expression régulière
         email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-        # tente de faire correspondre la chaîne email
+        # tente de faire correspondre la chaine email
         # avec l'expression régulière
         return re.match(email_regex, email) is not None
 

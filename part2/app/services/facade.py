@@ -11,7 +11,7 @@ class HBnBFacade:
 
     # Placeholder method for creating a user
     def create_user(self, user_data):
-        user = User(**user_data)
+        user = user(**user_data)
         self.user_repo.add(user)
         return user
 

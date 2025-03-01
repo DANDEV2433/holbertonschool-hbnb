@@ -23,11 +23,6 @@ class Place(BaseModel):
         """ajoute un avis au lieu"""
         if review not in self.reviews:
             self.reviews.append(review)
-            print(
-                f"ajoute par {review.user.first_name}{review.user.last_name}"
-                )
-        else:
-            print("Cet avis a deja ete ajoute")
 
     def get_reviews(self):
         """retourne tout les avis associes au lieu"""
@@ -35,8 +30,7 @@ class Place(BaseModel):
 
     def add_amenity(self, amenity):
         """ajoute une commodite dans la liste des commodites du lieu"""
-        if amenity not in self.amenities:
-            self.amenities.append(amenity)
+        self.amenities.append(amenity)
 
     def remove_amenity(self, amenity):
         """retire une commodite de la liste des commodites du lieu"""

@@ -90,8 +90,7 @@ class User(BaseModel):
         self.first_name = None
         self.last_name = None
         self.email = None
-        print
-        (f"Utilisateur supprimé. Les informations sont maintenant effacées.")
+        print(f"Utilisateur supprimé. Les informations sont maintenant effacées.")
 
     def get_date_of_creation(self):
         """Retourner la date de création de l'utilisateur."""

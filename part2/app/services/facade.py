@@ -25,7 +25,7 @@ class HBnBFacade:
         return self.user_repo.get_by_attribute('email', email)
 
     def create_place(self, place_data):
-        place = place(**place_data)
+        place = Place(**place_data)
         self.place_repo.add(place)
         return place
 
@@ -61,7 +61,7 @@ class HBnBFacade:
         return amenity
 
     def create_review(self, review_data):
-        review = review(**review_data)
+        review = Review(**review_data)
         self.review_repo.add(review)
         return review
 

@@ -42,9 +42,16 @@ class User(BaseModel):
     def register(self):
         # enregistrement de l'utilisateur
         # Validation pour le prénom
+        if not self.first_name:
+              raise ValueError("Le prénom ne peut pas être vide.")
+         
         if len(self.first_name) > 50:
-            raise ValueError("Le prénom dépasse 50 caractères.")
+                raise ValueError("Le prénom dépasse 50 caractères.")
+         
     # Validation pour le nom de famille
+        if not self.last_name:
+            raise ValueError("Le nom de famille ne peut pas être vide.")
+        
         if len(self.last_name) > 50:
             raise ValueError("Le nom de famille dépasse 50 caractères.")
 
@@ -74,8 +81,12 @@ class User(BaseModel):
         return email not in self.__class__.email_list
 
     def login(self):
-        """Simuler la connexion."""
-        print(f"{self.first_name} {self.last_name} est maintenant connecté.")
+        return {
+        "id": self.id,
+        "first_name": self.first_name,
+        "last_name": self.last_name,
+        "email": self.email
+        }
 
     def logout(self):
         """Simuler la déconnexion."""

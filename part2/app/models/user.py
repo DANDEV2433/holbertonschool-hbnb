@@ -60,11 +60,8 @@ class User(BaseModel):
     # Ajouter l'email à la liste après la validation
         self.__class__.email_list.append(self.email)
 
-        super().save()
-
         print(f"{self.first_name} {self.last_name} enregistré avec succès.")
 
-    @staticmethod
     def is_valid_email(self, email):
         # Valide le format de l'email avec une expression régulière
         email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"

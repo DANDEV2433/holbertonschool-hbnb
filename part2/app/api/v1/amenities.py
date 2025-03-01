@@ -36,7 +36,7 @@ class AmenityResource(Resource):
     @api.response(404, 'Amenity not found')
     def get(self, amenity_id):
         """Get amenity details by ID"""
-        amenity = facade.get_amenity_by_id(amenity_id)
+        amenity = facade.get_amenity(amenity_id)
         if amenity:
             return amenity.to_dict(), 200
         return {"erreur": "Commodite introuvable"}, 404

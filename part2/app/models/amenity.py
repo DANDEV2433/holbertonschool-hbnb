@@ -7,6 +7,7 @@ api = Api()
 class Amenity(BaseModel):
     def __init__(self, name):
         super().__init__()
+        self.id = str(uuid.uuid4())
         self.name = self.validate_name(name)
 
     @staticmethod

@@ -19,7 +19,7 @@ class AmenityList(Resource):
         """Register a new amenity"""
         data = request.json
         try:
-            new_amenity = facade.create_amenity(name=data['name'])
+            new_amenity = facade.create_amenity({"name": data['name']})
             return {"message": "La commodite a ete creee", "commodite":new_amenity.to_dict()}, 201
         except ValueError as e:
             return {"erreur": str(e)}, 400

@@ -101,3 +101,108 @@ Réponse attendue
 
 // 404 ERROR
 ```
+
+### Tests Place
+test créer un nouveau Lieu
+```
+curl -X 'POST' \
+  'http://127.0.0.1:5000/api/v1/places/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "cozy place",
+  "description": "A nice place to stay",
+  "price": 100.0,
+  "latitude": 37.7749,
+  "longitude": -122.4194,
+  "owner_id": "f0323b2f-37b8-420d-9677-f9c8b528a7ca",
+  "owner": {
+    "id": "f0323b2f-37b8-420d-9677-f9c8b528a7ca",
+    "first_name": "john",
+    "last_name": "doe",
+    "email": "doe@gmail.com"
+  },
+  "amenities": [
+    "wi-fi"
+  ],
+  "reviews": [
+    {
+      "id": "string",
+      "text": "string",
+      "rating": 0,
+      "user_id": "string"
+    }
+  ]
+}'
+```
+réponse attendue
+```
+TypeError: Place.__init__() got an unexpected keyword argument 'reviews'
+
+/// 500 erreur interne au serveur
+```
+
+test pour lister tout les lieux d'un utilisateur
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/places/' \
+  -H 'accept: application/json'
+```
+réponse attendue
+```
+[]
+
+// 200 Liste des lieux récupérée
+```
+
+test pour mettre à jour un lieu
+```
+curl -X 'PUT' \
+  'http://127.0.0.1:5000/api/v1/places/e6b6bf1b-f7e6-4c6f-88df-5d32156648c8' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "cozy place",
+  "description": "it'\''s cozy",
+  "price": 100,
+  "latitude": 37,
+  "longitude": -122,
+  "owner_id": "f0323b2f-37b8-420d-9677-f9c8b528a7ca",
+  "owner": {
+    "id": "f0323b2f-37b8-420d-9677-f9c8b528a7ca",
+    "first_name": "john",
+    "last_name": "doe",
+    "email": "doe@gmail.com"
+  },
+  "amenities": [
+    "wi-fi"
+  ],
+  "reviews": [
+    {
+      "id": "string",
+      "text": "string",
+      "rating": 0,
+      "user_id": "string"
+    }
+  ]
+}'
+```
+réponse attendue
+```
+TypeError: HBnBFacade.update_place() got an unexpected keyword argument 'title'
+
+// 500 erreur interne au serveur
+```
+
+test pour retrouver un lieu par son ID
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/places/e6b6bf1b-f7e6-4c6f-88df-5d32156648c8' \
+  -H 'accept: application/json'
+```
+réponse attendue
+```
+AttributeError: 'HBnBFacade' object has no attribute 'get_place_by_id'
+
+// 500 erreur interne au serveur
+```

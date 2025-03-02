@@ -48,15 +48,7 @@ class PlaceList(Resource):
         """Register a new place"""
         data = request.json
         try:
-            new_place = facade.create_place(
-                title=data['title'],
-                description=data.get('description', ''),
-                price=data['price'],
-                latitude=data['latitude'],
-                longitude=data['longitude'],
-                owner_id=data['owner_id'],
-                amenities=data.get('amenities', [])
-            )
+            new_place = facade.create_place(data)
             return {"message": "Le lieu a ete cree", "Lieu": new_place}, 201
         except ValueError as e:
             return {"erreur": str(e)}, 400

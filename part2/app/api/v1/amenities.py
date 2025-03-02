@@ -49,7 +49,7 @@ class AmenityResource(Resource):
         """Update an amenity's information"""
         data = request.json
         try:
-            updated_amenity = facade.update_amenity(amenity_id, **data)
+            updated_amenity = facade.update_amenity(amenity_id, data)
             if updated_amenity:
                 return {"message": "Commodite mise a jour", "commodite": updated_amenity.to_dict()}, 200
             return {"erreur": "Commodite introuvable"}, 404

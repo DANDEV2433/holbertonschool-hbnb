@@ -34,13 +34,17 @@ class HBnBFacade:
             raise ValueError("Proprietaire introuvable.")
         
         amenities = place_data.pop("amenities", [])
-
         place_data.pop("owner", None)
         place = Place(owner=owner, **place_data)
+        for review_id in reviews:
+            review = self.get_review(review_id)
+            if review:
+                place.add_review(review)
+
         for amenity_id in amenities:
             amenity = self.get_amenity(amenity_id)
             if amenity:
-                palce.add_amenity(amenity)
+                place.add_amenity(amenity)
 
         self.place_repo.add(place)
         return place

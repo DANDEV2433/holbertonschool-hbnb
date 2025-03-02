@@ -266,3 +266,79 @@ Réponse attendue
 
 // 404 ERROR
 ```
+### Tests des équipements
+Enregistrer un nouvel équipement
+```
+curl -X 'POST' \
+  'http://127.0.0.1:5000/api/v1/amenities/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "micro-onde"
+}'
+```
+Réponse obtenue
+```
+201
+
+{
+  "message": "La commodite a ete creee",
+  "commodite": {
+    "id": "c7c26eaa-f922-4c4b-a1b3-7ba9cc7d5775",
+    "name": "micro-onde",
+    "created_at": "2025-03-02T18:44:34.525817",
+    "updated_at": "2025-03-02T18:44:34.525829"
+  }
+}
+```
+Récupérer une liste de tout les équipements
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/amenities/' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+200
+
+{
+    "id": "c7c26eaa-f922-4c4b-a1b3-7ba9cc7d5775",
+    "name": "micro-onde",
+    "created_at": "2025-03-02T18:44:34.525817",
+    "updated_at": "2025-03-02T18:44:34.525829"
+  }
+```
+Récupérer les informations de tout les équipements par l'id
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/amenities/c7c26eaa-f922-4c4b-a1b3-7ba9cc7d5775' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+200
+
+{
+  "id": "c7c26eaa-f922-4c4b-a1b3-7ba9cc7d5775",
+  "name": "micro-onde",
+  "created_at": "2025-03-02T18:44:34.525817",
+  "updated_at": "2025-03-02T18:44:34.525829"
+}
+```
+Mettre a jour les infos d'un équipement
+```
+curl -X 'PUT' \
+  'http://127.0.0.1:5000/api/v1/amenities/c7c26eaa-f922-4c4b-a1b3-7ba9cc7d5775' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "lave-vaisselle"
+}'
+```
+Réponse obtenue
+```
+error 500
+TypeError: InMemoryRepository.update() missing 1 required positional argument: 'data'
+```
+
+

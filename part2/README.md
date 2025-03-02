@@ -233,3 +233,36 @@ Réponse attendue
 
 // 400 Error
 ```
+
+### Tests Récupération d'Utilisateur
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/users/f0323b2f-37b8-420d-9677-f9c8b528a7ca' \
+  -H 'accept: application/json'
+```
+Réponse attendue
+```
+{
+  "id": "f0323b2f-37b8-420d-9677-f9c8b528a7ca",
+  "first_name": "john",
+  "last_name": "dooe",
+  "email": "doe@gmail.com"
+}
+
+// 200 OK
+```
+
+Récupération avec un mauvais ID
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/users/e2674q9j-51i9-d3a1-3168-u6t5o953n6lb' \
+  -H 'accept: application/json'
+```
+Réponse attendue
+```
+{
+  "error": "User not found"
+}
+
+// 404 ERROR
+```

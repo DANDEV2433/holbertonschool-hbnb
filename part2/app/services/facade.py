@@ -25,7 +25,23 @@ class HBnBFacade:
         return self.user_repo.get_by_attribute('email', email)
 
     def create_place(self, place_data):
-        place = Place(**place_data)
+        owner_id = place_data.pop("owner_id", None)
+        if not owner_id:
+            raise ValueError("L'ID du proprietaire est requis.")
+
+        owner = self.get_user(owner_id)
+        if not owner:
+            raise ValueError("Proprietaire introuvable.")
+        
+        amenities = place_data.pop("amenities", [])
+
+        place_data.pop("owner", None)
+        place = Place(owner=owner, **place_data)
+        for amenity_id in amenities:
+            amenity = self.get_amenity(amenity_id)
+            if amenity:
+                palce.add_amenity(amenity)
+
         self.place_repo.add(place)
         return place
 

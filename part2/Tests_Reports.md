@@ -214,7 +214,7 @@ réponse attendue
 ```python3
 TypeError: Place.__init__() got an unexpected keyword argument 'reviews'
 
-/// 500 erreur interne au serveur
+/// 500 internal server error
 ```
 
 test pour lister tout les lieux d'un utilisateur
@@ -266,7 +266,7 @@ réponse attendue
 ```python3
 TypeError: HBnBFacade.update_place() got an unexpected keyword argument 'title'
 
-// 500 erreur interne au serveur
+// 500 internal server error
 ```
 
 test pour retrouver un lieu par son ID
@@ -279,5 +279,5 @@ réponse attendue
 ```python3
 AttributeError: 'HBnBFacade' object has no attribute 'get_place_by_id'
 
-// 500 erreur interne au serveur
+// 500 internal server error
 ```

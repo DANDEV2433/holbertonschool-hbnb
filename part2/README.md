@@ -235,5 +235,90 @@ Réponse obtenue
 error 500
 TypeError: InMemoryRepository.update() missing 1 required positional argument: 'data'
 ```
+### Tests Avis
+Test pour récupérer une liste de tous les avis
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/reviews/' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+200
 
+[]
+```
+Test pour enregistrer un nouvel avis
+```
+curl -X 'POST' \
+  'http://127.0.0.1:5000/api/v1/reviews/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "good home",
+  "rating": 3,
+  "user_id": "a7001f78-88a2-40ac-a5d8-08a72c1d7927",
+  "place_id": "string"
+}'
+```
+Réponse obtenue
+```
+500
 
+TypeError: HBnBFacade.create_review() got an unexpected keyword argument 'text'
+```
+Test pour obtenir tous les avis sur un lieu spécifique
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/reviews/places/a7001f78-88a2-40ac-a5d8-08a72c1d7927/reviews' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+500
+AttributeError: 'HBnBFacade' object has no attribute 'get_reviews_by_place_id'. Did you mean: 'get_reviews_by_place'?
+```
+Test pour obtenir les details de l'évaluation par l'ID
+```
+curl -X 'GET' \
+  'http://127.0.0.1:5000/api/v1/reviews/a7001f78-88a2-40ac-a5d8-08a72c1d7927' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+500
+
+AttributeError: 'HBnBFacade' object has no attribute 'get_review_by_id'. Did you mean: 'get_reviews_by_place'?
+```
+Test pour mettre a jour les informations d'un avis
+```
+curl -X 'PUT' \
+  'http://127.0.0.1:5000/api/v1/reviews/a7001f78-88a2-40ac-a5d8-08a72c1d7927' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "very-good",
+  "rating": 5,
+  "user_id": "a7001f78-88a2-40ac-a5d8-08a72c1d7927",
+  "place_id": "string"
+}'
+```
+Réponse obtenue
+```
+500
+
+TypeError: HBnBFacade.update_review() got an unexpected keyword argument 'text'
+```
+Test pour supprimer un avis
+```
+curl -X 'DELETE' \
+  'http://127.0.0.1:5000/api/v1/reviews/a7001f78-88a2-40ac-a5d8-08a72c1d7927' \
+  -H 'accept: application/json'
+```
+Réponse obtenue
+```
+404
+{
+  "erreur": "Avis introuvable"
+}
+```

@@ -3,12 +3,11 @@ from .base_model import BaseModel
 from datetime import datetime
 from app.models.user import User
 from flask_restx import Api
-from flask import request
 
 api = Api()
 
 class Place(BaseModel):
-    def __init__(self, title, description, price, latitude, longitude, owner):
+    def __init__(self, title, description, price, latitude, longitude, owner, reviews=None):
         super().__init__()
         self.title = self.validate_title(title)
         self.description = self.validate_description(description)
@@ -18,6 +17,7 @@ class Place(BaseModel):
         self.owner = self.validate_owner(owner)
         self.reviews = []  # List to store related reviews
         self.amenities = []  # List to store related amenities
+        self.reviews = reviews if reviews else []
 
     def add_review(self, review):
         """ajoute un avis au lieu"""

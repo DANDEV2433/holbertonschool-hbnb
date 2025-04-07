@@ -2,6 +2,14 @@
   This is a SAMPLE File to get you started. Follow the instructions on the project to complete the tasks. 
   You'll probably need to override some of theese styles.
 */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
 
 * {
     box-sizing: border-box;
@@ -11,14 +19,24 @@
 }
 
 body {
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-    background-color: #333;
+    background-color: #e1a304;
     color: #fff;
     padding: 1rem;
+}
+
+footer {
+    background-color: #e1a304;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
 }
 
 nav a {
@@ -29,4 +47,102 @@ nav a {
 
 main {
     padding: 2rem;
+    text-align: center;
+    margin: auto;
+    height: auto;
+
+}
+
+.places-container{
+    display: flex;
+    justify-content: space-between; /* Assure que les éléments sont espacés uniformément */
+    align-items: flex-start; /* Aligne les éléments en haut */
+    gap: 20px; /* Espacement entre les blocs */
+    margin-top: 20px;
+    flex-wrap: wrap; /* Permet aux blocs de passer à la ligne si l'espace est insuffisant */
+}
+
+.place-card1, .place-card2, .place-card3 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    background-color: #fff;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.place-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.login-button {
+    background-color: #e1a304;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    float: right;
+}
+
+h1, h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    text-align: center;
+    margin: auto;
+    width: auto;
+}
+
+.place-info {
+    text-align: center;
+    margin: auto;
+}
+
+.add-review {
+    text-align: center;
+    margin: auto;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.details-button {
+    background-color: #e1a304;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.details-button:hover {
+    background-color: #cf9003;
+}
+
+.review-card1, .review-card2 {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 500px;
+    background-color: #fff;
+    text-align: center;
 }

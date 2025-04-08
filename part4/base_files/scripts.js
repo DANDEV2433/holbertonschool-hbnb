@@ -4,5 +4,9 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    /* DO SOMETHING */
-  });
+    const isLoggedIn = true;
+
+    if (isLoggedIn) {
+      document.getElementById('add-review-button').style.display = 'block';
+    }
+});

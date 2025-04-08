@@ -55,11 +55,11 @@ main {
 
 .places-container{
     display: flex;
-    justify-content: space-between; /* Assure que les éléments sont espacés uniformément */
-    align-items: flex-start; /* Aligne les éléments en haut */
-    gap: 20px; /* Espacement entre les blocs */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
     margin-top: 20px;
-    flex-wrap: wrap; /* Permet aux blocs de passer à la ligne si l'espace est insuffisant */
+    flex-wrap: wrap;
 }
 
 .place-card1, .place-card2, .place-card3 {
@@ -101,7 +101,9 @@ h1, h2 {
     border: 1px solid #ddd;
     text-align: center;
     margin: auto;
-    width: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #edefe3;
 }
 
 .place-info {

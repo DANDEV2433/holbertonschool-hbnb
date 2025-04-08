@@ -3,6 +3,7 @@ from flask_restx import Api
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 import config
 
 bcrypt = Bcrypt()
@@ -19,14 +20,25 @@ from app.api.v1.protected import api as protected_ns
 def create_app(config_class=config.DevelopmentConfig):
     # Création de l'application
     app = Flask(__name__)
-        
+    CORS(app, origins=["http://localhost:5500"], supports_credentials=True)
     app.config.from_object(config_class)
-    
+
+    app = create_app()
+
+# Ajout des headers CORS après chaque requête
+    @app.after_request
+    def add_cors_headers(response):
+        response.headers["Access-Control-Allow-Origin"] = "http://localhost:5500"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+        return response
+
     # Initialisation des extensions
     bcrypt.init_app(app)
     jwt.init_app(app)
     db.init_app(app)
-    
+     
     # Configuration de l'API
     authorizations = {
         'apikey': {

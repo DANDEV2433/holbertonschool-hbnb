@@ -20,7 +20,7 @@ from app.api.v1.protected import api as protected_ns
 def create_app(config_class=config.DevelopmentConfig):
     # Création de l'application
     app = Flask(__name__)
-    CORS(app, origins=["http://localhost:5500"], supports_credentials=True)
+    CORS(app)
     app.config.from_object(config_class)
 
     # Initialisation des extensions
@@ -51,13 +51,13 @@ def create_app(config_class=config.DevelopmentConfig):
 
     return app
 
-app = create_app()
+# app = create_app()
 
-# Ajout des headers CORS après chaque requête
-@app.after_request
-def add_cors_headers(response):
-    response.headers["Access-Control-Allow-Origin"] = "http://localhost:5500"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    response.headers["Access-Control-Allow-Credentials"] = "true"
-    return response
+# # Ajout des headers CORS après chaque requête
+# @app.after_request
+# def add_cors_headers(response):
+#     response.headers["Access-Control-Allow-Origin"] = "http://localhost:5500"
+#     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
+#     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+#     response.headers["Access-Control-Allow-Credentials"] = "true"
+#     return response
